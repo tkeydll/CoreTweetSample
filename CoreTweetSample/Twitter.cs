@@ -34,6 +34,25 @@ namespace CoreTweetSample
             return response.Id;
         }
 
+        public long Retweet(long id)
+        {
+            var response = _tokens.Statuses.Retweet(id);
+            return response.Id;
+        }
+
+        public long QuoteTweet(string tweetText, string screen_name, long statusId)
+        {
+            var url = string.Format("https://twitter.com/{0}/status/{1}", screen_name, statusId);
+            var response = _tokens.Statuses.UpdateAsync(status => tweetText + " " + url);
+            return response.Id;
+        }
+
+        public long QuoteTweet(string tweetText, string url)
+        {
+            var response = _tokens.Statuses.UpdateAsync(tweetText + " " + url);
+            return response.Id;
+        }
+
         public long Favorite(long tweetId)
         {
             var response = _tokens.Favorites.CreateAsync(tweetId);

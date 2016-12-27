@@ -12,9 +12,12 @@ namespace CoreTweetSample
         {
             var client = new Twitter();
 
-            var id = client.Tweet("hoge");
+            var screen_name = "";
+            var id = 0;
 
-            Console.WriteLine(id);
+            var responseId = client.QuoteTweet("hoge", screen_name, id);
+
+            Console.WriteLine(responseId);
 
             Console.WriteLine("Press Enter: ");
             Console.ReadLine();
